@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 1000px;
+            margin:  0 auto;
+        }
+        .content{
+            display: flex;
+            
+            /* justify-content: space-around; */
+            /* flex; */
+        }
+        #red{
+            flex-grow: 1;
+            background-color:red;
+            /* height: 100px; */
+        }
+        #blue{
+            background-color: blue;
+            height: 100%;
+            flex-grow: 2;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div id="red"><h2 >Red</h2></div>
+            <div id="blue"> <h2 >Blue</h2></div>
+        </div>
+    </div>
+</body>
+</html>
