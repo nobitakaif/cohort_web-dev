@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Todo</title>
+</head>
+<body>
+    <input type="text" placeholder="enter your schedule">
+    <button id="btn" onclick="addTodo()">Add Todo</button>
+    <button id="deleteFirstTodo" onclick="deleteFirstTodo()">Delete First Todo</button>
+    <button id="deleteLastTodo" onclick="deleteLastTodo()">Delete Last Todo</button>
+    <div id="todos"></div>
+</body>
+<script> 
+    let todos=[];
+    function addTodo(){
+        todos.push({
+            title:document.querySelector('input').value,
+        })
+        document.querySelector('input').value=""
+        render();
+    }
+    function deleteLastTodo(){
+        todos.splice(todos.length-1,1)
+        render()
+    }
+    function deleteFirstTodo(){
+        todos.splice(0,1)
+        render()
+    }
+
+    function render(){
+        document.querySelector("#todos").innerHTML="";
+        for(let i=0;i<todos.length;i++){
+            const todo=todos[i]
+            const div=document.createElement("div")
+            const h1=document.createElement('h2')
+            const button=document.createElement('button')
+            button.setAttribute('id',i)
+            // button.setAttribute("onclick",`deleteSelectedTodo()`)
+            button.innerHTML="Delete"
+            h1.innerHTML=todo.title
+            div.append(h1)
+            div.append(button)
+            document.querySelector("#todos").appendChild(div)
+        }
+    }
+    // function deleteSelectedTodo(n){
+    //     let skip=document.querySelector("#"+n);
+    //     todos.splice(skip,1);
+    //     render();
+    // }
+</script>
+</html>
