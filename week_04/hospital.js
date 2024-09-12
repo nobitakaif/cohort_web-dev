@@ -8,6 +8,14 @@ let allUsers=[{
             third:'brain-disorder'
         }
     },
+    {
+        userName:"tahir",
+        diseases:{
+            first:'cancer',
+            second:'mental',
+            third:'fever'
+        }
+    },
 
 ]
 app.use(express.json())
@@ -21,7 +29,7 @@ app.get('/:nobita',function(req,res){
     }
     
     if(allDiseases){
-        res.json({
+        res.status(200).json({
             allDiseases
         })
     }
