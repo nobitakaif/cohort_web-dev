@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+</head>
+<body>
+    <input type="text", placeholder="enter number 1", id="inputFirst">
+    <input type="text", placeholder="enter number 1", id="inputSecond">
+    <button onclick="getSum()">sum</button>
+</body>
+    <script>
+        async function getSum(){
+            // sending the post request because my routes is written on post method
+            // let finalValue;
+            let a=document.getElementById('inputFirst').value
+            let b=document.getElementById('inputSecond').value
+            const finalValue= axios.post('http://localhost:5000/sum',{
+                // these are the body that i'm sending form the extracting the input and sending to the backend (nodeJs) that expect body send value
+                a:a,
+                b:b
+                
+                
+            })
+
+            const div =document.createElement('div')
+            // finalValue=a
+            div.innerHTML=finalValue
+            document.body.append(div)
+        }
+    </script>
+</html>
