@@ -17,7 +17,7 @@
             // let finalValue;
             let a=document.getElementById('inputFirst').value
             let b=document.getElementById('inputSecond').value
-            const finalValue= axios.post('http://localhost:5000/sum',{
+            const finalValue= await axios.post('http://localhost:5000/sum',{
                 // these are the body that i'm sending form the extracting the input and sending to the backend (nodeJs) that expect body send value
                 a:a,
                 b:b
@@ -27,7 +27,7 @@
 
             const div =document.createElement('div')
             // finalValue=a
-            div.innerHTML=finalValue
+            div.innerHTML= finalValue
             document.body.append(div)
         }
     </script>
