@@ -1,3 +1,6 @@
+
+// authentication with own logic (own created generate token function)
+
 const express= require('express')
 const app = express()
 
