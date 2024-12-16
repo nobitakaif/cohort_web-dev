@@ -41,8 +41,9 @@ app.post('/sign-in',function(req,res){
     }
     if(flag){
         const token=jwt.sign({
-            userName:userName
-        },JWT_SCRETE) // jwt.sing() sign the jsonwebtoekn using the secret and username (you can add more thing in first parameter like username, password, phone-number , email...... etc)
+            userName:userName,
+            // password:password
+        },JWT_SCRETE) // jwt.sign() sign the jsonwebtoekn using the secret and username (you can add more thing in first parameter like username, password, phone-number , email...... etc)
         res.status(200).json({
             token:token
         })
@@ -58,20 +59,41 @@ app.get('/me',function(req,res){
     const token=req.headers.token
     
     const decryptedInformation= jwt.verify(token,JWT_SCRETE) //  jwt.verify spit out again the original username { username:nobita }using the token and secret key  
+    // if(!decryptedInformation){
+    //     res.status(400).send("invalid token")
+    // }
+    // const tokenFunction=function decryptedFunction(){
+    //     const ans={}
+    //     const token=jwt.verify(token,JWT_SCRETE)
+    //     return ans({
+    //         token:token.userName
+    //     })
+    // }
+    // if(!tokenFunction){
+    //     res.status(400).send("invalid token")
+    // }
     const userName= decryptedInformation.userName
     let foundUser=null
     
     for(let i=0;i<users.length;i++){
         if(users[i].userName==userName){
-            foundUser="great"
+            // foundUser="great"
             console.log(users[i])
             res.status(200).json({
                 password:users[i].password
             })
         }
     }
-    if(!foundUser){
-        res.status(400).send("token invalid")
+    
+    
+})
+app.use((err,req,res,next)=>{
+    if(err){
+        console.log(err)
+        res.status(400).send("this is your fault not server, your token could be invalid")
+    }
+    else{
+        next()
     }
 })
 
