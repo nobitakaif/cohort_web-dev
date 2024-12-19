@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Todo app with authentication</title>
+    </head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+    <script>
+        async function signUp(){
+            const email=document.getElementById("email")
+            const password=document.getElementById("password")
+           
+            if(email.value=="" || password.value=="" || email.value==" " || password.value==" "){
+                return alert("please enter the right information")
+            }
+            const confirm= await axios.post("http://localhost:4000/signup",{
+                email:email.value,
+                password:password.value
+
+            })
+            console.log(confirm)
+            alert("you're logged in")
+            // console.log()
+            email.value=""
+            password.value=""
+
+
+        }
+
+        async function signIn(){
+            const email= document.getElementById("signInEmail")
+            const password= document.getElementById("signInPassword")
+
+            const response= await axios.post("http://localhost:4000/signin",{
+                email:email.value,
+                password:password.value
+            })
+            console.log(response)
+            email.value=""
+            password.value=""
+            localStorage.setItem("token",response.data.token) // from the signin routes we get back token and we store the token in localstorage (like the all website does) in application section their is localstorage.......
+
+
+        }
+        async function userInformation(){
+            const response=await axios.get("http://localhost:4000/me",{
+                headers:{
+                    token:localStorage.getItem("token")
+                }
+            })
+            document.getElementById("information").innerHTML= "email : " + response.data.email + " password : " +response.data.password 
+        }
+        userInformation()
+        async function LogOut(){
+            localStorage.removeItem("token")
+        }
+    </script>
+    <div>
+        <div>
+            Sign-up
+            <input type="text" placeholder=" enter your email" id="email">
+            <input type="text" placeholder=" enter your password" id="password">
+            <button onclick="signUp()">Sign-up</button>
+            <br><br>
+            
+            Sign-in
+            <input type="text" placeholder="enter your email" id="signInEmail">
+            <input type="text" placeholder="enter your password" id="signInPassword">
+            <button onclick="signIn()">Sign-in</button>
+        </div>
+        <!-- <br><br> -->
+        <div style="margin-left: 160px;" >
+            <h3>User information</h3>
+            <div id="information"></div>
+        </div>
+        <div style="margin-left: 190px;">
+            <button onclick="LogOut()">Log-Out</button>
+        </div>
+    </div>
+</html>

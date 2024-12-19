@@ -47,6 +47,7 @@ app.post('/sign-in',function(req,res){
         res.status(200).json({
             token:token
         })
+        // res.header("token ", token);      this is the way to send the token in headers 
         
     }
     else{
