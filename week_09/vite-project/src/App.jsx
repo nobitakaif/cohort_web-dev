@@ -6,32 +6,50 @@ import { PostComponent } from './array'
 import { Clock } from './Clock'
 import { Button } from './Button'
 import { Timer } from './Timer'
-import { Card } from './Card'
+import { Card, InputBox } from './Card'
 // import './App.css'
 
 function App() {
  
-  return (
-    <div >
-       {/* <ConditionalRender/>
-       <NotificaionCount/> */}
-       <Card>
-          <h2>Card Title</h2>
-          <h1>hii everyone</h1>
-       </Card>
-       {/* <Timer/> */}
-       {/* <Button /> */}
-       {/* <Clock/> */}
-       {/* <PostComponent/> */}
-      {/* <PostComponent/><br /> */ }
-      {/* <PostComponent/><br /> */}
-      {/* <ProfileCard /> */}
-      
-      
+  const [isModalOpen, setModalOpen] = useState(false);
 
-    </div>
+    return (
+        <div>
+            <button onClick={() => setModalOpen(true)}>Open Modal</button>
+            <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
+            <h2>Modal Title</h2>
+            <p>This is some content inside the modal.</p>
+            </Modal>
+        </div>
   )
 }
+
+function Modal ({ isOpen, onClose, children }) {
+  if (!isOpen) return null;
+
+  return (
+      <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+      }}>
+          <div style={{
+              background: 'white',
+              padding: '20px',
+              borderRadius: '5px',
+          }}>
+              <button onClick={onClose}>Close</button>
+              {children}
+          </div>
+      </div>
+  );
+};
 
 const style={width:400, borderRadius:20, display :"flex", height:100, backgroundColor:"#b2bec3", }
 
@@ -63,7 +81,7 @@ const style={width:400, borderRadius:20, display :"flex", height:100, background
 
 function NotificaionCount(){
   const [notification, setNotification]=useState(0)
-
+  console.log("check ")
   return <div>
     <button onClick={()=>setNotification(notification+1)}>increase notification</button>
     {notification}

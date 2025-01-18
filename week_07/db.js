@@ -1,7 +1,7 @@
 const mogoose= require("mongoose")
 const Schema= mogoose.Schema
 const ObjectId= mogoose.ObjectId
-
+// const {ObjectId,Schema} =require('mongoose')
 const User = new Schema({
     email : {type:String},
     password : String,
