@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev":"tsc -b && node ./dist/index.js"
+    "dev": "tsc -b && node ./dist/indexPrisma.js"
   },
   "keywords": [],
   "author": "",
@@ -11,7 +11,9 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
+    "@prisma/client": "^6.2.1",
     "@types/pg": "^8.11.10",
-    "pg": "^8.13.1"
+    "pg": "^8.13.1",
+    "prisma": "^6.2.1"
   }
 }
