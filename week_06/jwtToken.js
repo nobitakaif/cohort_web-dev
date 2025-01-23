@@ -98,4 +98,4 @@ app.use((err,req,res,next)=>{
     }
 })
 
-app.listen(4000, console.log("server is running is port on 4000"))
+app.listen(1024, console.log("server is running is port on 4000"))
